@@ -24,10 +24,10 @@ WORLD = JSON.parse(wjson, symbolize_names: true)
 
 DOCS_URL = 'http://docs.everypolitician.org'
 
-# Can't do server-side redirection on a GitHub Pages-hosted static site, so the 
+# Can't do server-side redirection on a GitHub Pages-hosted static site, so the
 # kindest next-best-thing is to have a placeholder with meta HTTP-refresh.
 # This works for humans (i.e., browsers parse and follow the redirect) but,
-# because wget simply fetches the HTML document, this lets us continue to 
+# because wget simply fetches the HTML document, this lets us continue to
 # spider the site to generate the contents of everypolitician/viewer-static.
 # See scripts/release.sh (update_viewer_static).
 def soft_redirect(url, page_title)
@@ -121,7 +121,7 @@ get '/:country/:house/term-table/:id.html' do |country, house, termid|
                 .map { |group_id, mems| [org_lookup[group_id], mems] }
                 .sort_by { |group, mems| [-mems.count, group.name] }
                 .map { |group, mems| { group_id: group.id.split('/').last, name: group.name, member_count: mems.count } }
-  @group_data = [] if @group_data.length == 1 
+  @group_data = [] if @group_data.length == 1
 
   identifiers = people.map(&:identifiers).compact.flatten
   top_identifiers = identifiers.reject { |i| i[:scheme] == 'everypolitician_legacy' }
@@ -145,6 +145,7 @@ get '/:country/:house/term-table/:id.html' do |country, house, termid|
         membership[:area] = area_lookup[mem.area_id].name if mem.area_id
         membership
       end,
+      positions: [],
       social: [],
       bio: [],
       contacts: [],
