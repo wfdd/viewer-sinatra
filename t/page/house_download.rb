@@ -49,4 +49,14 @@ describe 'HouseDownload' do
       subject.download_url.must_include 'cdn.rawgit.com'
     end
   end
+
+  describe 'other houses' do
+    it 'knows that there are more than one houses' do
+      subject.more_houses?.must_equal true
+    end
+
+    it 'knows of House of Representatives from Senate' do
+      subject.other_houses.first.name.must_equal 'House of Representatives'
+    end
+  end
 end
