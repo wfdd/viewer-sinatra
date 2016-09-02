@@ -41,4 +41,14 @@ describe 'house download template' do
       subject.css('#term-senate-113 p').text.strip.must_include '2013-01-06 - 2015-01-03'
     end
   end
+
+  describe 'other houses' do
+    it 'shows a link to the other legislature' do
+      subject.css('.page-section .button--quarternary').first.text.strip.must_include 'House of Representatives'
+    end
+
+    it 'links to the other legislature' do
+      subject.css('.page-section .button--quarternary/@href').first.text.strip.must_equal '/united-states-of-america/house/'
+    end
+  end
 end
