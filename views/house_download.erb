@@ -89,7 +89,7 @@
   <% if @page.more_houses? %>
   <div class="container">
     <h3>Other legislatures</h3>
-    <p>We also have data available for this country for the following legislatures:</p>
+    <p>We have more data available for this country:</p>
     <% @page.other_houses.each do |house| %>
     <p>
       <a class="button button--quarternary" href="/<%= @page.country.slug.downcase %>/<%= house.slug.downcase %>/">
